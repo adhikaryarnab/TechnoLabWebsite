@@ -213,3 +213,142 @@ const transporter = nodemailer.createTransport({
     server.listen(3000, () => {
     console.log('Server running on port 3000');
   });
+
+
+// Application Register page (Apply Now) Connection*
+// CREATE
+
+server.post("/api/registration/add", (req, res) => {
+    let details = {
+        firstName: req.body.firstName,
+        middleName: req.body.middleName,
+        lastName: req.body.lastName,
+        parentFirstName: req.body.parentFirstName,
+        parentMiddleName: req.body.parentMiddleName,
+        parentLastName: req.body.parentLastName,
+        email: req.body.email,
+        phone: req.body.phone,
+        dob: req.body.dob,
+        gender: req.body.gender,
+        country: req.body.country,
+        presentAddress: req.body.presentAddress,
+        permanentAddress: req.body.permanentAddress,
+        state: req.body.state,
+        city: req.body.city,
+        pin: req.body.pin,
+        qualification: req.body.qualification,
+        year: req.body.year,
+        subject: req.body.subject,
+        coursetype: req.body.coursetype,
+        message: req.body.message,
+
+    };
+
+    let sql = "INSERT INTO registration SET ?";
+    db.query(sql, details, (error) => {
+        if (error) {
+            res.send({ status: false, message: "Message Send Failed" });
+        } else {
+            res.send({ status: true, message: "Message Send Successfully"});
+        }
+    });
+});
+
+// READ All
+
+server.get("/api/registration", (req, res) => {
+    var sql = "SELECT * FROM registration";
+    db.query(sql, function (error, result) {
+        if (error) {
+            console.log("Error Connecting DB");
+        } else {
+            res.send({ status: true, data: result });
+        }
+    });
+});
+
+// READ BY ID
+
+server.get("/api/registration/:id", (req, res) => {
+    var contactid = req.params.id;
+    var sql = "SELECT * FROM registration WHERE id=" + contactid;
+    db.query(sql, function (error, result) {
+        if (error) {
+            console.log("Error Connecting DB");
+        } else {
+            res.send({ status: true, data: result });
+        }
+    });
+});
+
+// UPDATE
+
+server.put("/api/registration/update/:id", (req, res) => {
+    let sql =
+      "UPDATE registration SET firstName='" +
+      req.body.firstName +
+      "', middleName='" +
+      req.body.middleName +
+      "',lastName='" +
+      req.body.lastName +
+      "', parentFirstName='" +
+      req.body.parentFirstName +
+      "',parentMiddleName='" +
+      req.body.parentMiddleName +
+      "', parentLastName='" +
+      req.body.parentLastName +
+      "',email='" +
+      req.body.email +
+      "', phone='" +
+      req.body.phone +
+      "',dob='" +
+      req.body.dob +
+      "', gender='" +
+      req.body.gender +
+      "',country='" +
+      req.body.country +
+      "', presentAddress='" +
+      req.body.presentAddress +
+      "',permanentAddress='" +
+      req.body.permanentAddress +
+      "', state='" +
+      req.body.state +
+      "',city='" +
+      req.body.city +
+      "', pin='" +
+      req.body.pin +
+      "',qualification='" +
+      req.body.qualification +
+      "',year='" +
+      req.body.year +
+      "',subject='" +
+      req.body.subject +
+      "',coursetype='" +
+      req.body.coursetype +
+      "',message='" +
+      req.body.message +
+      "' WHERE id=" +
+      req.params.id;
+  
+    let a = db.query(sql, (error, result) => {
+      if (error) {
+        res.send({ status: false, message: "Contact Updated Failed" });
+      } else {
+        res.send({ status: true, message: "Contact Updated successfully" });
+      }
+    });
+  });
+
+
+// DELETE
+
+server.delete("/api/registration/delete/:id", (req, res) => {
+    let sql = "DELETE FROM registration WHERE id=" + req.params.id + "";
+    let query = db.query(sql, (error) => {
+      if (error) {
+        res.send({ status: false, message: "Contact Delete Failed" });
+      } else {
+        res.send({ status: true, message: "Contact Deleted successfully" });
+      }
+    });
+  });
