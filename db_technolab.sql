@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2025 at 07:23 PM
+-- Generation Time: Sep 06, 2025 at 06:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -102,24 +102,69 @@ CREATE TABLE `parent_course_master` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `register_logs`
+--
+
+CREATE TABLE `register_logs` (
+  `id` int(11) NOT NULL,
+  `registration_id` int(11) NOT NULL,
+  `firstName` varchar(20) NOT NULL,
+  `middleName` varchar(20) NOT NULL,
+  `lastName` varchar(20) NOT NULL,
+  `parentFirstName` varchar(20) NOT NULL,
+  `parentMiddleName` varchar(20) NOT NULL,
+  `parentLastName` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `dob` varchar(10) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `country` varchar(15) NOT NULL,
+  `presentAddress` varchar(50) NOT NULL,
+  `permanentAddress` varchar(50) NOT NULL,
+  `state` varchar(20) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  `pin` varchar(10) NOT NULL,
+  `qualification` varchar(20) NOT NULL,
+  `year` varchar(10) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `coursetype` varchar(50) NOT NULL,
+  `message` varchar(100) NOT NULL,
+  `IsDeleted` int(11) NOT NULL,
+  `DateOfRegister` varchar(20) DEFAULT NULL,
+  `DateOfModify` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `register_logs`
+--
+
+INSERT INTO `register_logs` (`id`, `registration_id`, `firstName`, `middleName`, `lastName`, `parentFirstName`, `parentMiddleName`, `parentLastName`, `email`, `phone`, `dob`, `gender`, `country`, `presentAddress`, `permanentAddress`, `state`, `city`, `pin`, `qualification`, `year`, `subject`, `coursetype`, `message`, `IsDeleted`, `DateOfRegister`, `DateOfModify`) VALUES
+(1, 0, 'arnab_08', 'bubai', 'Adhikary', 'TST', 'TST', 'TST', 'asd@gmail.com', '943594945', '2025-07-27', 'Male', 'as', 'ggdfg', 'tst', 'wa', 'sd', '12552255', '', '0000-00-00', '', '', '', 0, NULL, '2025-08-01 01:01:36'),
+(2, 0, 'arnab_09', 'bubai', 'Adhikary', 'TST', 'TST', 'TST', 'asd@gmail.com', '943594945', '2025-07-27', 'Male', 'as', 'ggdfg', 'tst', 'wa', 'sd', '12552255', '', '0000-00-00', '', '', '', 0, NULL, '2025-08-01 01:06:10'),
+(3, 0, 'arnab_10', 'bubai', 'Adhikary', 'TST', 'TST', 'TST', 'asd@gmail.com', '943594945', '2025-07-27', 'Male', 'as', 'ggdfg', 'tst', 'wa', 'sd', '12552255', '', '0000-00-00', '', '', '', 0, NULL, '2025-08-02 21:53:59'),
+(4, 0, 'arnab_11', 'bubai', 'Adhikary', 'TST', 'TST', 'TST', 'asd@gmail.com', '943594945', '2025-07-27', 'Male', 'as', 'ggdfg', 'tst', 'wa', 'sd', '12552255', '', '0000-00-00', '', '', '', 0, NULL, '2025-08-02 21:54:53');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `registration`
 --
 
 CREATE TABLE `registration` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(20) NOT NULL,
-  `middle_name` varchar(20) NOT NULL,
-  `last_name` varchar(20) NOT NULL,
-  `parent_first_ame` varchar(20) NOT NULL,
-  `parent_middle-name` varchar(20) NOT NULL,
-  `parent_last_ame` varchar(20) NOT NULL,
+  `firstName` varchar(20) NOT NULL,
+  `middleName` varchar(20) NOT NULL,
+  `lastName` varchar(20) NOT NULL,
+  `parentFirstName` varchar(20) NOT NULL,
+  `parentMiddleName` varchar(20) NOT NULL,
+  `parentLastName` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` varchar(15) NOT NULL,
-  `dob` date NOT NULL,
+  `dob` varchar(10) NOT NULL,
   `gender` varchar(10) NOT NULL,
   `country` varchar(20) NOT NULL,
-  `present_address` varchar(50) NOT NULL,
-  `permanent_address` varchar(50) NOT NULL,
+  `presentAddress` varchar(50) NOT NULL,
+  `permanentAddress` varchar(50) NOT NULL,
   `state` varchar(20) NOT NULL,
   `city` varchar(20) NOT NULL,
   `pin` varchar(10) NOT NULL,
@@ -127,8 +172,17 @@ CREATE TABLE `registration` (
   `year` date NOT NULL,
   `subject` varchar(100) NOT NULL,
   `coursetype` varchar(50) NOT NULL,
-  `message` varchar(100) NOT NULL
+  `message` varchar(100) NOT NULL,
+  `IsDeleted` int(1) NOT NULL,
+  `DateOfRegister` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `registration`
+--
+
+INSERT INTO `registration` (`id`, `firstName`, `middleName`, `lastName`, `parentFirstName`, `parentMiddleName`, `parentLastName`, `email`, `phone`, `dob`, `gender`, `country`, `presentAddress`, `permanentAddress`, `state`, `city`, `pin`, `qualification`, `year`, `subject`, `coursetype`, `message`, `IsDeleted`, `DateOfRegister`) VALUES
+(14, 'arnab_11', 'bubai', 'Adhikary', 'TST', 'TST', 'TST', 'asd@gmail.com', '943594945', '2025-07-27', 'Male', 'as', 'ggdfg', 'tst', 'wa', 'sd', '12552255', '', '0000-00-00', '', '', '', 0, '2025-07-27 10:20:27');
 
 -- --------------------------------------------------------
 
@@ -171,16 +225,10 @@ CREATE TABLE `tab_techno` (
 --
 
 INSERT INTO `tab_techno` (`id`, `name`, `email`, `recipient`, `subject`, `message`) VALUES
-(38, 'amit', 'amitgopetechnolab@gmail.com', '', 'test amit', 'test amit 11-05-2025.'),
-(39, 'sougata', 'adhikaryarnab93@gmail.com', '', 'test sougata', 'test sougata 11052025'),
-(40, 'dd', 'arnab.a@gamutinfosystems.com', '', 'tst', 'tst'),
-(41, 'ttttt', 'arnab.a@gamutinfosystems.com', '', 'xxxx', 'yyy'),
-(42, 'gg', 'arnab.a@gamutinfosystems.com', '', 'kk', 'll'),
-(43, 'arnb', 'arnab@gmail.com', '', 'test', 'test'),
-(44, 'ssddff', 'asdxyz@gmail.com', '', 'hhhhjjjg', 'rrrrrrrrrrryyyyyyfffffffffggggggg'),
-(45, 'nnmm', 'xyz@gmail.com', '', 'sssddrw', 'DFGGH'),
-(53, 'ww', 'ww@gmail.com', '', 'dddd', 'gggg'),
-(54, 'test', 'adhikaryarnab93@gmail.com', '', 'test', 'tst msg');
+(62, 'axc', 'yuu', 'fdd', 'kiu', 'htr'),
+(64, 'gg', 'ghh', 'fjjdd', 'kkkiu', 'll'),
+(65, 'rrr', 'ttt', '', 'jjh', 'gf'),
+(66, 'test', 'test', '', 'test', 'test');
 
 --
 -- Indexes for dumped tables
@@ -226,6 +274,13 @@ ALTER TABLE `master_nf2`
 --
 ALTER TABLE `parent_course_master`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `register_logs`
+--
+ALTER TABLE `register_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `registration_id_fk` (`registration_id`);
 
 --
 -- Indexes for table `registration`
@@ -286,10 +341,16 @@ ALTER TABLE `parent_course_master`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `register_logs`
+--
+ALTER TABLE `register_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `registration`
 --
 ALTER TABLE `registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tab_adminlogin`
@@ -301,7 +362,7 @@ ALTER TABLE `tab_adminlogin`
 -- AUTO_INCREMENT for table `tab_techno`
 --
 ALTER TABLE `tab_techno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- Constraints for dumped tables
